@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV — Antoine Hérissé-Drouet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --white: #ffffff;
+  --off: #f7f7f5;
+  --bg-card: #f2f1ef;
+  --border: #e8e6e1;
+  --border2: #d0cec8;
+  --text: #1a1a1a;
+  --muted: #888580;
+  --muted2: #5c5a56;
+  --accent: #2c2c2c;
+  --accent-line: #1a1a1a;
+  --nav-h: 58px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-h);
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem;
+}
+.nav-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+.nav-links { display: flex; list-style: none; }
+.nav-links li a {
+  display: block;
+  padding: 0 1.25rem;
+  height: var(--nav-h);
+  line-height: var(--nav-h);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted2);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.nav-links li a:hover { color: var(--text); }
+.nav-links li a.active { color: var(--text); border-bottom-color: var(--text); font-weight: 500; }
+.nav-tag {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── LAYOUT ── */
+section {
+  padding: calc(var(--nav-h) + 5rem) 3rem 5rem;
+  max-width: 1020px;
+  margin: 0 auto;
+}
+.divider { width: 100%; height: 1px; background: var(--border); }
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+.section-desc { font-size: 14px; color: var(--muted2); font-weight: 300; max-width: 480px; }
+
+/* ── HERO ── */
+#accueil {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: var(--nav-h);
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--muted); }
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+.hero-name em { font-style: italic; }
+.hero-sub {
+  font-size: 1rem;
+  color: var(--muted2);
+  font-weight: 300;
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.hero-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.chip {
+  font-size: 11px;
+  padding: 4px 12px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  color: var(--muted2);
+  letter-spacing: 0.03em;
+}
+.chip.dark { background: var(--text); color: #fff; border-color: var(--text); }
+.hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 13px; font-weight: 500;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all .18s;
+  cursor: pointer; border: 1px solid transparent;
+  letter-spacing: 0.02em;
+}
+.btn-dark { background: var(--text); color: #fff; }
+.btn-dark:hover { background: #333; }
+.btn-light { background: transparent; color: var(--muted2); border-color: var(--border2); }
+.btn-light:hover { border-color: var(--text); color: var(--text); }
+
+/* ── A PROPOS ── */
+.about-grid { display: grid; grid-template-columns: 200px 1fr; gap: 4rem; margin-top: 3rem; }
+.photo-box {
+  aspect-ratio: 3/4;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.75rem; color: var(--muted); font-size: 12px; letter-spacing: 0.05em;
+}
+.photo-icon { font-size: 28px; opacity: 0.4; }
+.about-blocks { display: flex; flex-direction: column; gap: 2rem; }
+.about-block h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 0.5rem; }
+.about-block p { font-size: 14px; color: var(--muted2); line-height: 1.8; font-weight: 300; }
+.chips-wrap { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+.tech-chip {
+  font-size: 11px;
+  padding: 3px 10px;
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--muted2);
+}
+.stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 0.5rem; }
+.stat-box { padding: 1rem; background: var(--off); border: 1px solid var(--border); border-radius: 4px; text-align: center; }
+.stat-n { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; color: var(--text); }
+.stat-l { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px; }
+
+/* ── PROJETS ── */
+.proj-list { display: flex; flex-direction: column; margin-top: 3rem; }
+.proj-card {
+  display: grid; grid-template-columns: 48px 1fr auto;
+  gap: 1.5rem; align-items: start;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--border);
+  transition: background .15s;
+}
+.proj-card:last-child { border-bottom: 1px solid var(--border); }
+.proj-card:hover { background: var(--off); margin: 0 -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; border-radius: 4px; border-top-color: transparent; }
+.proj-num { font-size: 12px; color: var(--muted); font-weight: 300; padding-top: 3px; }
+.proj-body h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.3rem; }
+.proj-body p { font-size: 13px; color: var(--muted2); line-height: 1.7; margin-bottom: 0.75rem; }
+.proj-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.ptag { font-size: 11px; padding: 2px 8px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 2px; color: var(--muted2); }
+.ptag.hi { background: #f0f0ec; border-color: var(--border2); color: var(--text); }
+.proj-meta { text-align: right; font-size: 12px; color: var(--muted); white-space: nowrap; line-height: 1.8; }
+.status { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; }
+.dot { width: 5px; height: 5px; border-radius: 50%; }
+.dot.done { background: #2a7a2a; }
+.dot.wip { background: #b07800; }
+
+.comp-block { margin-top: 2.5rem; padding: 2rem; background: var(--off); border: 1px solid var(--border); border-radius: 4px; }
+.comp-block h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 1.5rem; }
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.comp-row { display: flex; flex-direction: column; gap: 5px; }
+.comp-label { font-size: 13px; color: var(--muted2); }
+.comp-bar { height: 2px; background: var(--border); border-radius: 1px; }
+.comp-fill { height: 100%; background: var(--text); border-radius: 1px; }
+
+/* ── BILAN ── */
+.bilan-grid { display: grid; grid-template-columns: 180px 1fr; gap: 4rem; margin-top: 3rem; align-items: start; }
+.bilan-nav { position: sticky; top: calc(var(--nav-h) + 2rem); display: flex; flex-direction: column; gap: 2px; }
+.bilan-nav-item {
+  font-size: 12px; color: var(--muted);
+  padding: 6px 0 6px 12px;
+  border-left: 2px solid var(--border);
+  cursor: pointer; letter-spacing: 0.04em;
+  transition: all .15s;
+}
+.bilan-nav-item:hover, .bilan-nav-item.active { border-left-color: var(--text); color: var(--text); }
+.bilan-sections { display: flex; flex-direction: column; gap: 3rem; }
+.bilan-section h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 1rem; }
+.bilan-text { font-size: 14px; color: var(--muted2); line-height: 1.9; font-weight: 300; }
+.bilan-text p { margin-bottom: 0.9rem; }
+.bilan-text p:last-child { margin-bottom: 0; }
+.feel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.5rem; }
+.feel-card { padding: 1.1rem; background: var(--off); border: 1px solid var(--border); border-radius: 4px; }
+.feel-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.feel-card p { font-size: 13px; color: var(--muted2); line-height: 1.7; }
+
+/* ── CV ── */
+.cv-grid { display: grid; grid-template-columns: 220px 1fr; gap: 4rem; margin-top: 3rem; }
+.cv-left { display: flex; flex-direction: column; gap: 2rem; }
+.cv-right { display: flex; flex-direction: column; gap: 2.5rem; }
+.cv-name-block .cv-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; line-height: 1.1; margin-bottom: 0.25rem; }
+.cv-name-block .cv-role { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 1.25rem; }
+.cv-info { display: flex; flex-direction: column; gap: 0.4rem; }
+.cv-info-row { font-size: 12px; color: var(--muted2); display: flex; gap: 0.5rem; align-items: flex-start; line-height: 1.5; }
+.cv-info-row span:first-child { color: var(--muted); flex-shrink: 0; }
+.cv-section-title { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; margin-bottom: 1rem; }
+.skill-rows { display: flex; flex-direction: column; gap: 0.85rem; }
+.skill-row-item { }
+.skill-row-name { font-size: 13px; color: var(--muted2); margin-bottom: 2px; }
+.skill-row-sub { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.skill-bar { height: 2px; background: var(--border); border-radius: 1px; }
+.skill-fill { height: 100%; background: var(--text); border-radius: 1px; }
+.timeline { display: flex; flex-direction: column; }
+.tl-item { display: grid; grid-template-columns: 16px 1fr; gap: 1rem; padding-bottom: 1.75rem; }
+.tl-left { display: flex; flex-direction: column; align-items: center; }
+.tl-dot { width: 8px; height: 8px; border: 1.5px solid var(--text); border-radius: 50%; background: #fff; margin-top: 5px; flex-shrink: 0; }
+.tl-line { width: 1px; flex: 1; background: var(--border); margin-top: 4px; }
+.tl-item:last-child .tl-line { display: none; }
+.tl-title { font-size: 14px; font-weight: 500; color: var(--text); }
+.tl-sub { font-size: 13px; color: var(--muted2); margin-top: 1px; }
+.tl-date { font-size: 11px; color: var(--muted); letter-spacing: 0.04em; margin-top: 3px; }
+.tl-desc { font-size: 13px; color: var(--muted); margin-top: 5px; line-height: 1.7; }
+.tl-desc ul { padding-left: 1rem; }
+.tl-desc ul li { margin-bottom: 2px; }
+.cv-dl { margin-top: 0.5rem; padding: 1.1rem 1.25rem; background: var(--off); border: 1px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.cv-dl p { font-size: 13px; color: var(--muted2); }
+.cv-dl span { font-size: 11px; color: var(--muted); display: block; margin-top: 2px; }
+
+/* ── FOOTER ── */
+footer { max-width: 1020px; margin: 0 auto; padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+footer p { font-size: 12px; color: var(--muted); }
+
+/* ── ANIMATIONS ── */
+.fade-in { opacity: 0; transform: translateY(16px); transition: opacity .5s, transform .5s; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+@media (max-width: 768px) {
+  nav { padding: 0 1.25rem; }
+  section { padding: calc(var(--nav-h) + 3rem) 1.25rem 3rem; }
+  .nav-tag { display: none; }
+  .about-grid, .bilan-grid, .cv-grid { grid-template-columns: 1fr; }
+  .bilan-nav { position: static; flex-direction: row; flex-wrap: wrap; }
+  .feel-grid, .comp-grid { grid-template-columns: 1fr; }
+  .proj-card { grid-template-columns: auto 1fr; }
+  .proj-meta { display: none; }
+}
+
+.nav-links li a[href="cv.html"] { color: var(--text); border-bottom-color: var(--text); font-weight: 500; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-name">Antoine Hérissé-Drouet</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="projets.html">Projets</a></li>
+    <li><a href="bilan.html">Bilan</a></li>
+    <li><a href="cv.html">CV</a></li>
+  </ul>
+  <div class="nav-tag">BUT SD · 2025–2028</div>
+</nav>
+<section id="cv" class="fade-in">
+  <div class="section-label">04 – Curriculum Vitae</div>
+  <h2 class="section-title">Mon parcours</h2>
+  <p class="section-desc">Version à mettre à jour en format PDF pour le 15 juin 2026.</p>
+
+  <div class="cv-grid">
+    <!-- Sidebar -->
+    <div class="cv-left">
+      <div class="cv-name-block">
+        <div class="cv-name">Antoine<br>Hérissé-Drouet</div>
+        <div class="cv-role">Étudiant BUT Science des Données – 1re année</div>
+        <div class="cv-info">
+          <div class="cv-info-row"><span>✉</span><span>herissedrouet.tonio@gmail.com</span></div>
+          <div class="cv-info-row"><span>✆</span><span>07 66 43 06 15</span></div>
+          <div class="cv-info-row"><span>🖈</span><span>Valanjou (49670) · Niort – Campus IUT</span></div>
+          <div class="cv-info-row"><span>🕯</span><span>18/07/2007 · 18 ans · Permis B</span></div>
+          <div class="cv-info-row" style="margin-top:6px;color:#555"><span>→</span><span>Recherche : Stage fin d'année scolaire 2027</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="cv-section-title">Compétences informatiques</div>
+        <div class="skill-rows">
+          <div class="skill-row-item"><div class="skill-row-name">Python</div><div class="skill-row-sub">Intermédiaire · 2023 à aujourd'hui</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+          <div class="skill-row-item"><div class="skill-row-name">SQL / Bases de données</div><div class="skill-row-sub">Débutant-intermédiaire · 2023 à aujourd'hui</div><div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div></div>
+          <div class="skill-row-item"><div class="skill-row-name">R</div><div class="skill-row-sub">Débutant · 2025</div><div class="skill-bar"><div class="skill-fill" style="width:55%"></div></div></div>
+          <div class="skill-row-item"><div class="skill-row-name">SAS</div><div class="skill-row-sub">Débutant · 2025</div><div class="skill-bar"><div class="skill-fill" style="width:45%"></div></div></div>
+          <div class="skill-row-item"><div class="skill-row-name">Excel</div><div class="skill-row-sub">Débutant · 2025</div><div class="skill-bar"><div class="skill-fill" style="width:40%"></div></div></div>
+          <div class="skill-row-item"><div class="skill-row-name">Power BI / Dataviz</div><div class="skill-row-sub">Initiation · 2025</div><div class="skill-bar"><div class="skill-fill" style="width:35%"></div></div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="cv-section-title">Langues</div>
+        <div class="skill-rows">
+          <div class="skill-row-item"><div class="skill-row-name">Français – Natif</div><div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div></div>
+          <div class="skill-row-item"><div class="skill-row-name">Anglais – B2-C1 · LV1</div><div class="skill-row-sub">Du primaire à aujourd'hui</div><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+          <div class="skill-row-item"><div class="skill-row-name">Allemand – A1 · LV2</div><div class="skill-row-sub">Collège / Lycée</div><div class="skill-bar"><div class="skill-fill" style="width:22%"></div></div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="cv-section-title">Centres d'intérêt</div>
+        <div class="cv-info">
+          <div class="cv-info-row"><span>·</span><span>Joueur de handball au club de Chemillé · 2015–2025</span></div>
+          <div class="cv-info-row"><span>·</span><span>Lecture · SF &amp; horreur · Pierre Bordage, Stephen King)</span></div>
+          <div class="cv-info-row"><span>·</span><span>Cinéma d'auteur · Quentin Tarantino, Stanley Kubrick</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="cv-right">
+      <div>
+        <div class="cv-section-title">Formation</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-title">BUT Science des Données</div>
+              <div class="tl-sub">IUT de Niort</div>
+              <div class="tl-date">2025 → en cours</div>
+              <div class="tl-desc">S1 &amp; S2 complétés : statistiques, bases de données, programmation Python &amp; R, visualisation, SAS.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-title">Baccalauréat général</div>
+              <div class="tl-sub">Spécialités : Mathématiques &amp; NSI</div>
+              <div class="tl-date">2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="cv-section-title">Compétences informatiques (détail)</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-title">Python – Intermédiaire · 2023 à aujourd'hui</div>
+              <div class="tl-desc"><ul>
+                <li>Manipulation de données avec pandas (DataFrame, filtrage, tri, regroupement)</li>
+                <li>Import/export CSV, gestion des encodages (UTF-8, Latin-1)</li>
+                <li>Visualisation avec numpy et cyborg</li>
+                <li>Connexion à une base de données MySQL (via mysql-connector)</li>
+                <li>Développement d'interfaces graphiques (Tkinter)</li>
+              </ul></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-title">SQL / Bases de données – Débutant-intermédiaire · 2023 à aujourd'hui</div>
+              <div class="tl-desc"><ul>
+                <li>Requêtes SELECT, jointures, agrégations, vues (MySQL &amp; Oracle)</li>
+                <li>Modélisation entité-association, création de tables</li>
+              </ul></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-title">R – Débutant · 2025</div>
+              <div class="tl-desc"><ul>
+                <li>Statistiques descriptives et inférentielles (tests du chi², intervalles de confiance)</li>
+                <li>Visualisation avec ggplot2</li>
+                <li>Régression linéaire simple et multiple</li>
+              </ul></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-title">SAS – Débutant · 2025</div>
+              <div class="tl-desc"><ul>
+                <li>DATA steps, PROC steps (FREQ, MEANS, SORT), formats</li>
+              </ul></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-title">Excel &amp; Power BI / Dataviz – Débutant · 2025</div>
+              <div class="tl-desc"><ul>
+                <li>Excel : tableaux croisés dynamiques, formules de base</li>
+                <li>Power BI : création de tableaux de bord et graphiques interactifs</li>
+              </ul></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="cv-section-title">Expériences</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-title">Bénévole – Festival de musique</div>
+              <div class="tl-sub">Organisation, accueil, travail en équipe</div>
+              <div class="tl-date">2025</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-title">Travaux agricoles saisonniers</div>
+              <div class="tl-sub">Rigueur, travail physique, ponctualité</div>
+              <div class="tl-date">2023 – 2024</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-dl">
+        <div>
+          <p>Version PDF du CV</p>
+        </div>
+        <a href="cv\CV_Antoine_Herisse-Drouet.pdf" download="CV_Antoine_Herisse-Drouet.pdf" class="btn btn-dark" style="font-size:13px;padding:9px 20px">Télécharger PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <p>Antoine Hérissé-Drouet · Portfolio BUT SD</p>
+  <p style="font-size:11px;color:var(--muted)">IUT de Niort · 2025–2028</p>
+</footer>
+<script>
+
+document.querySelectorAll('.fade-in').forEach(el =>
+  new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.08 }).observe(el)
+);
+
+</script>
+</body>
+</html>

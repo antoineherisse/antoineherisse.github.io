@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bilan — Antoine Hérissé-Drouet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --white: #ffffff;
+  --off: #f7f7f5;
+  --bg-card: #f2f1ef;
+  --border: #e8e6e1;
+  --border2: #d0cec8;
+  --text: #1a1a1a;
+  --muted: #888580;
+  --muted2: #5c5a56;
+  --accent: #2c2c2c;
+  --accent-line: #1a1a1a;
+  --nav-h: 58px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-h);
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem;
+}
+.nav-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+.nav-links { display: flex; list-style: none; }
+.nav-links li a {
+  display: block;
+  padding: 0 1.25rem;
+  height: var(--nav-h);
+  line-height: var(--nav-h);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted2);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.nav-links li a:hover { color: var(--text); }
+.nav-links li a.active { color: var(--text); border-bottom-color: var(--text); font-weight: 500; }
+.nav-tag {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── LAYOUT ── */
+section {
+  padding: calc(var(--nav-h) + 5rem) 3rem 5rem;
+  max-width: 1020px;
+  margin: 0 auto;
+}
+.divider { width: 100%; height: 1px; background: var(--border); }
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+.section-desc { font-size: 14px; color: var(--muted2); font-weight: 300; max-width: 480px; }
+
+/* ── HERO ── */
+#accueil {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: var(--nav-h);
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--muted); }
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+.hero-name em { font-style: italic; }
+.hero-sub {
+  font-size: 1rem;
+  color: var(--muted2);
+  font-weight: 300;
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.hero-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.chip {
+  font-size: 11px;
+  padding: 4px 12px;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  color: var(--muted2);
+  letter-spacing: 0.03em;
+}
+.chip.dark { background: var(--text); color: #fff; border-color: var(--text); }
+.hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 13px; font-weight: 500;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all .18s;
+  cursor: pointer; border: 1px solid transparent;
+  letter-spacing: 0.02em;
+}
+.btn-dark { background: var(--text); color: #fff; }
+.btn-dark:hover { background: #333; }
+.btn-light { background: transparent; color: var(--muted2); border-color: var(--border2); }
+.btn-light:hover { border-color: var(--text); color: var(--text); }
+
+/* ── A PROPOS ── */
+.about-grid { display: grid; grid-template-columns: 200px 1fr; gap: 4rem; margin-top: 3rem; }
+.photo-box {
+  aspect-ratio: 3/4;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.75rem; color: var(--muted); font-size: 12px; letter-spacing: 0.05em;
+}
+.photo-icon { font-size: 28px; opacity: 0.4; }
+.about-blocks { display: flex; flex-direction: column; gap: 2rem; }
+.about-block h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 0.5rem; }
+.about-block p { font-size: 14px; color: var(--muted2); line-height: 1.8; font-weight: 300; }
+.chips-wrap { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+.tech-chip {
+  font-size: 11px;
+  padding: 3px 10px;
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--muted2);
+}
+.stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 0.5rem; }
+.stat-box { padding: 1rem; background: var(--off); border: 1px solid var(--border); border-radius: 4px; text-align: center; }
+.stat-n { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; color: var(--text); }
+.stat-l { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px; }
+
+/* ── PROJETS ── */
+.proj-list { display: flex; flex-direction: column; margin-top: 3rem; }
+.proj-card {
+  display: grid; grid-template-columns: 48px 1fr auto;
+  gap: 1.5rem; align-items: start;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--border);
+  transition: background .15s;
+}
+.proj-card:last-child { border-bottom: 1px solid var(--border); }
+.proj-card:hover { background: var(--off); margin: 0 -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; border-radius: 4px; border-top-color: transparent; }
+.proj-num { font-size: 12px; color: var(--muted); font-weight: 300; padding-top: 3px; }
+.proj-body h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.3rem; }
+.proj-body p { font-size: 13px; color: var(--muted2); line-height: 1.7; margin-bottom: 0.75rem; }
+.proj-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.ptag { font-size: 11px; padding: 2px 8px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 2px; color: var(--muted2); }
+.ptag.hi { background: #f0f0ec; border-color: var(--border2); color: var(--text); }
+.proj-meta { text-align: right; font-size: 12px; color: var(--muted); white-space: nowrap; line-height: 1.8; }
+.status { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; }
+.dot { width: 5px; height: 5px; border-radius: 50%; }
+.dot.done { background: #2a7a2a; }
+.dot.wip { background: #b07800; }
+
+.comp-block { margin-top: 2.5rem; padding: 2rem; background: var(--off); border: 1px solid var(--border); border-radius: 4px; }
+.comp-block h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 1.5rem; }
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.comp-row { display: flex; flex-direction: column; gap: 5px; }
+.comp-label { font-size: 13px; color: var(--muted2); }
+.comp-bar { height: 2px; background: var(--border); border-radius: 1px; }
+.comp-fill { height: 100%; background: var(--text); border-radius: 1px; }
+
+/* ── BILAN ── */
+.bilan-grid { display: grid; grid-template-columns: 180px 1fr; gap: 4rem; margin-top: 3rem; align-items: start; }
+.bilan-nav { position: sticky; top: calc(var(--nav-h) + 2rem); display: flex; flex-direction: column; gap: 2px; }
+.bilan-nav-item {
+  font-size: 12px; color: var(--muted);
+  padding: 6px 0 6px 12px;
+  border-left: 2px solid var(--border);
+  cursor: pointer; letter-spacing: 0.04em;
+  transition: all .15s;
+}
+.bilan-nav-item:hover, .bilan-nav-item.active { border-left-color: var(--text); color: var(--text); }
+.bilan-sections { display: flex; flex-direction: column; gap: 3rem; }
+.bilan-section h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; margin-bottom: 1rem; }
+.bilan-text { font-size: 14px; color: var(--muted2); line-height: 1.9; font-weight: 300; }
+.bilan-text p { margin-bottom: 0.9rem; }
+.bilan-text p:last-child { margin-bottom: 0; }
+.feel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.5rem; }
+.feel-card { padding: 1.1rem; background: var(--off); border: 1px solid var(--border); border-radius: 4px; }
+.feel-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.feel-card p { font-size: 13px; color: var(--muted2); line-height: 1.7; }
+
+/* ── CV ── */
+.cv-grid { display: grid; grid-template-columns: 220px 1fr; gap: 4rem; margin-top: 3rem; }
+.cv-left { display: flex; flex-direction: column; gap: 2rem; }
+.cv-right { display: flex; flex-direction: column; gap: 2.5rem; }
+.cv-name-block .cv-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; line-height: 1.1; margin-bottom: 0.25rem; }
+.cv-name-block .cv-role { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 1.25rem; }
+.cv-info { display: flex; flex-direction: column; gap: 0.4rem; }
+.cv-info-row { font-size: 12px; color: var(--muted2); display: flex; gap: 0.5rem; align-items: flex-start; line-height: 1.5; }
+.cv-info-row span:first-child { color: var(--muted); flex-shrink: 0; }
+.cv-section-title { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; margin-bottom: 1rem; }
+.skill-rows { display: flex; flex-direction: column; gap: 0.85rem; }
+.skill-row-item { }
+.skill-row-name { font-size: 13px; color: var(--muted2); margin-bottom: 2px; }
+.skill-row-sub { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.skill-bar { height: 2px; background: var(--border); border-radius: 1px; }
+.skill-fill { height: 100%; background: var(--text); border-radius: 1px; }
+.timeline { display: flex; flex-direction: column; }
+.tl-item { display: grid; grid-template-columns: 16px 1fr; gap: 1rem; padding-bottom: 1.75rem; }
+.tl-left { display: flex; flex-direction: column; align-items: center; }
+.tl-dot { width: 8px; height: 8px; border: 1.5px solid var(--text); border-radius: 50%; background: #fff; margin-top: 5px; flex-shrink: 0; }
+.tl-line { width: 1px; flex: 1; background: var(--border); margin-top: 4px; }
+.tl-item:last-child .tl-line { display: none; }
+.tl-title { font-size: 14px; font-weight: 500; color: var(--text); }
+.tl-sub { font-size: 13px; color: var(--muted2); margin-top: 1px; }
+.tl-date { font-size: 11px; color: var(--muted); letter-spacing: 0.04em; margin-top: 3px; }
+.tl-desc { font-size: 13px; color: var(--muted); margin-top: 5px; line-height: 1.7; }
+.tl-desc ul { padding-left: 1rem; }
+.tl-desc ul li { margin-bottom: 2px; }
+.cv-dl { margin-top: 0.5rem; padding: 1.1rem 1.25rem; background: var(--off); border: 1px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.cv-dl p { font-size: 13px; color: var(--muted2); }
+.cv-dl span { font-size: 11px; color: var(--muted); display: block; margin-top: 2px; }
+
+/* ── FOOTER ── */
+footer { max-width: 1020px; margin: 0 auto; padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+footer p { font-size: 12px; color: var(--muted); }
+
+/* ── ANIMATIONS ── */
+.fade-in { opacity: 0; transform: translateY(16px); transition: opacity .5s, transform .5s; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+@media (max-width: 768px) {
+  nav { padding: 0 1.25rem; }
+  section { padding: calc(var(--nav-h) + 3rem) 1.25rem 3rem; }
+  .nav-tag { display: none; }
+  .about-grid, .bilan-grid, .cv-grid { grid-template-columns: 1fr; }
+  .bilan-nav { position: static; flex-direction: row; flex-wrap: wrap; }
+  .feel-grid, .comp-grid { grid-template-columns: 1fr; }
+  .proj-card { grid-template-columns: auto 1fr; }
+  .proj-meta { display: none; }
+}
+
+.nav-links li a[href="bilan.html"] { color: var(--text); border-bottom-color: var(--text); font-weight: 500; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-name">Antoine Hérissé-Drouet</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="projets.html">Projets</a></li>
+    <li><a href="bilan.html">Bilan</a></li>
+    <li><a href="cv.html">CV</a></li>
+  </ul>
+  <div class="nav-tag">BUT SD · 2025–2028</div>
+</nav>
+<section id="bilan" class="fade-in">
+  <div class="section-label">03 – Bilan personnel</div>
+  <h2 class="section-title">Réflexion sur l'année</h2>
+  <p class="section-desc">Compte rendu personnel de ma première année de BUT Science des Données.</p>
+
+  <div class="bilan-grid">
+    <div class="bilan-nav">
+      <div class="bilan-nav-item active" onclick="toBilan('b-res',this)">Résultats</div>
+      <div class="bilan-nav-item" onclick="toBilan('b-mot',this)">Motivations</div>
+      <div class="bilan-nav-item" onclick="toBilan('b-tra',this)">Travail &amp; résultats</div>
+      <div class="bilan-nav-item" onclick="toBilan('b-res2',this)">Ressentis</div>
+    </div>
+    <div class="bilan-sections">
+
+      <div id="b-res" class="bilan-section">
+        <h3>Résultats académiques</h3>
+        <div class="bilan-text">
+          <p>Cette première année s'est globalement bien déroulée. J'ai obtenu de bons résultats dans les matières liées à la programmation et aux bases de données (Python, gestion de BDR, etc ...) en partie grâce aux bases acquises en spécialités NSI au lycée. Cela m'a permis de progresser rapidement et de consacrer davantage d'attention aux disciplines moins familières et plus difficiles pour moi.</p>
+          <p>Les matières à dominante mathématique au sens formel certains aspects d'algèbre, de modélisation ont demandé plus d'efforts, avec des résultats parfois en deçà de mes attentes. Ce n'est pas un point de blocage, mais c'est un axe sur lequel je compte travailler sérieusement en deuxième année.</p>
+        </div>
+      </div>
+
+      <div id="b-mot" class="bilan-section">
+        <h3>Motivations &amp; ambitions</h3>
+        <div class="bilan-text">
+          <p>Ce qui m'a orienté vers la Science des Données, c'est la diversité de la formation : on y aborde l'informatique, les statistiques, la visualisation et la communication des résultats, toujours appliqués à des données réelles. Cette dimension concrète, combinée à la variété des outils étudiés, correspond bien à la façon dont j'aime apprendre.</p>
+          <p>Pour l'instant, je me concentre sur le BUT et sur ce qu'il m'apporte concrètement. L'objectif à court terme est de réaliser un stage de fin d'année scolaire 2027 pour confronter mes apprentissages à des problématiques réelles et gagner une première expérience professionnelle dans le domaine.</p>
+        </div>
+      </div>
+
+      <div id="b-tra" class="bilan-section">
+        <h3>Rapport travail / résultats</h3>
+        <div class="bilan-text">
+          <p>Cette année m'a permis de mieux cerner mon profil d'étudiant. Je m'en sors légèrement mieux en examens qu'en SAE, ce qui m'a surpris : j'aurais pensé l'inverse. Les épreuves écrites me permettent de structurer ma réflexion sur un temps délimité, alors que les projets en autonomie me demandent un effort d'organisation que je ne maîtrise pas encore complètement.</p>
+          <p>C'est précisément ce point que je compte travailler en deuxième année : être plus rigoureux dans mes méthodes de travail en autonomie, mieux planifier les étapes d'un projet, et ne pas attendre d'être en difficulté pour ajuster ma façon de travailler.</p>
+        </div>
+      </div>
+
+      <div id="b-res2" class="bilan-section">
+        <h3>Ressentis &amp; apprentissages</h3>
+        <div class="feel-grid">
+          <div class="feel-card">
+            <div class="feel-label">Ce que j'ai aimé</div>
+            <p>La diversité des outils abordés en un an (Python, R, SQL, SAS, Power BI) donne une vision d'ensemble que peu de formations offrent dès la première année. Les SAE laissant une marge d'initiative ont été particulièrement stimulantes.</p>
+          </div>
+          <div class="feel-card">
+            <div class="feel-label">Ce qui m'a challengé</div>
+            <p>Les aspects mathématiques les plus formels, et SAS en particulier au début de l'année la syntaxe et la logique des DATA steps ont nécessité un vrai temps d'adaptation avant de devenir utilisables.</p>
+          </div>
+          <div class="feel-card">
+            <div class="feel-label">Ce que j'ai appris sur moi</div>
+            <p>Que je suis nettement plus efficace lorsque le travail a une finalité concrète visible. J'ai aussi appris que solliciter de l'aide rapidement est plus productif que de s'obstiner seul sur un problème.</p>
+          </div>
+          <div class="feel-card">
+            <div class="feel-label">Axes d'amélioration</div>
+            <p>Développer une méthode de travail plus structurée en autonomie, mieux planifier les étapes des projets, et renforcer les bases mathématiques pour aborder sereinement la suite du BUT.</p>
+          </div>
+        </div>
+        <div class="bilan-text" style="margin-top:1.5rem">
+          <p>Cette première année m'a conforté dans mon choix de formation. Certaines matières ont été exigeantes et j'ai dû faire face à des difficultés réelles, mais le bilan reste positif. Je repars en deuxième année avec des bases solides, une meilleure connaissance de mes méthodes de travail, et l'objectif concret de décrocher un stage pour mettre tout ça en pratique.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<footer>
+  <p>Antoine Hérissé-Drouet · Portfolio BUT SD</p>
+  <p style="font-size:11px;color:var(--muted)">IUT de Niort · 2025–2028</p>
+</footer>
+<script>
+
+function toBilan(id, el) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.bilan-nav-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+}
+document.querySelectorAll('.fade-in').forEach(el =>
+  new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.08 }).observe(el)
+);
+
+</script>
+</body>
+</html>
